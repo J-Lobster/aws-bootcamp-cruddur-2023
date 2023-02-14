@@ -35,7 +35,6 @@ So to append to what I said on the last chapter, this was another fun part for m
       unzip "awscliv2.zip"
       sudo ./aws/install
       cd $THEIA_WORKSPACE_ROOT
-            
 >vscode:
   extensions:
     - 42Crunch.vscode-openapi
