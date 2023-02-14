@@ -26,16 +26,28 @@ It will ask you to create a tag, which you should label appropriately and click 
 So to append to what I said on the last chapter, this was another fun part for me. I had already set up my gitpod and linked it to my github along with providing it access to the template Andrew created for us which can be found on his github profile under "aws-bootcamp-cruddur-2023". There should be a big green button that says: "Use this template". Andrew has a video explaining how to appropriately set this up and can be found on his youtube channel with the title: "Creating Your Repository from the Github Template". Moving on, Once you are logged into your account, there will be a .gitpod.yml file within your directories. We are going to set up the environment using this yml file. This way, everytime we start up our gitpod environment, it will basically be scripted to set up the environment so we can always have access to AWS CLI. Andrew goes over how that yml will look like on his "Week 0 - Generate Credentials, AWS CLI, Budget and Billing Alarm via CLI" video but I am gonna post it here anyway: 
 
 >tasks:
-  - name: aws-cli 
-    env:
-      AWS_CLI_AUTO_PROMPT: on-partial
-    init: | 
-      cd /workspace
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip "awscliv2.zip"
-      sudo ./aws/install
-      cd $THEIA_WORKSPACE_ROOT
+>  - name: aws-cli 
+>    env:
+>      AWS_CLI_AUTO_PROMPT: on-partial
+>    init: | 
+>      cd /workspace
+>      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+>      unzip "awscliv2.zip"
+>      sudo ./aws/install
+>      cd $THEIA_WORKSPACE_ROOT
 >vscode:
-  extensions:
-    - 42Crunch.vscode-openapi
+>  extensions:
+>    - 42Crunch.vscode-openapi
 
+#### I would suggest testing this out by opening a new window to gitpod, re-entering your workspace and watch the test fly by so quickly on the terminal tab underneath that you won't know what happened (its just the yaml file doing its thing ;D). To test out if it worked, just type in "aws" on the terminal and this should appear:
+
+>usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+>To see help text, you can run:
+
+>  aws help
+>  aws <command> help
+>  aws <command> <subcommand> help
+
+>aws: error: the following arguments are required: command
+
+Alright this is the very last thing we need to do and we should be all set! We will have to create environment variables in order to store our AWS credentials. This way everytime we get on gitpod and utilize the AWS CLI
