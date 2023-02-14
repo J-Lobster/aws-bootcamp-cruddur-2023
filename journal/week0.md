@@ -79,6 +79,7 @@ Ladies and gentlemen, we did it! We are now ready for Week 1! If you have any is
 ## Lucidchart shared links
 
 Conceptual Architectural diagram: https://lucid.app/lucidchart/61bf18e8-03e1-4db3-b498-ec97821e2dcd/edit?invitationId=inv_5d4a34ce-e5e5-44cd-bcf3-d01a724ff67d
+
 Logical Architectural diagram: https://lucid.app/lucidchart/invitations/accept/inv_0dc02fba-730b-4516-99c1-8dfb61e272b6
 
 I did not make many changes to the conceptual diagram as I wasn't sure what other considerations to include on the diagram itself. I tried to seek help on discord, but I was having issues at the time with verifying my phone number cause it "supposedly" was associated with another account despite never opening a different account with my newer phone number... As for the logical diagram, I tried to improve upon the original model by cleaning up a lot of the lines and making it more cohesive as the original diagram got a bit messy when linking applications to services like RDS, DynamoDB and AppSync. I even included a public and private subnet cause I figured we will be isolating these two containers as best practice since we don't want any bad actors to have an easy time accessing our backend which is connected to our DBs thus allowing access to customer info. I was going to also add NACLS and SGs but I liked how cleaned it looked and I figured since it wasn't on the document outline provided by Andrew, I'd leave it out until this was mentioned. 
