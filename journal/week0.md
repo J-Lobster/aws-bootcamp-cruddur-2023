@@ -54,4 +54,31 @@ To see help text, you can run:
 aws: error: the following arguments are required: command
 ```
 
-Alright this is the very last thing we need to do and we should be all set! We will have to create environment variables in order to store our AWS credentials. This way everytime we get on gitpod and utilize the AWS CLI
+Alright this is the very last thing we need to do and we should be all set! We will have to create environment variables in order to store our AWS credentials. This way everytime we get on gitpod and utilize the AWS CLI, it will automatically have the variables with the necessary access key and secret key to have permissions to use resources on our account. To do this we have to use a command: `gp env`. In combination with the names of the variables we will assign our credentials and regions into. This information can befound on the video but also on AWS. The commands and variables you'll enter into the terminal will look like this:
+
+```
+gitpod /workspace $ gp env AWS_ACCESS_KEY_ID="[Enter your access key here]
+
+gitpod /workspace $ gp env AWS_SECRET_ACCESS_KEY="[Enter your secret key here]"
+
+gitpod /workspace $ gp env AWS_DEFAULT_REGION="[Enter your region here]"
+```
+
+Once you've done this, open another tab to gitpod and click on your profile icon on the upper right hand corner of the screen and click "User Settings". Once the new page is loaded, you will see a option for "Variables" on the left hand side of the screen. When you click this, it should list the variables you set up for this specific workspace. The last thing will do is make sure that the AWS CLI is recognizing our credentials. We will do this by entering the following command: `aws sts get-caller-identity`. In response the terminal will display values in a JSON format that will look something like this: 
+
+```
+{
+    "UserId": "[Access key ID]",
+    "Account": "[account number]",
+    "Arn": "arn:aws:iam::[IAM alias]:user/[IAM Username]"
+}
+```
+
+Ladies and gentlemen, we did it! We are now ready for Week 1! If you have any issues, I would suggest heading to the discord to seek assistance from the moderators or Andrew. Beneath this will be the final chapter but it won't have much writing. It will display my two lucidcharts respectively representing my conceptual and logical architectural design for our application! Thanks for reading and I'll see you in the next episode!
+
+## Lucidchart shared links
+
+Conceptual Architectural diagram: https://lucid.app/lucidchart/61bf18e8-03e1-4db3-b498-ec97821e2dcd/edit?invitationId=inv_5d4a34ce-e5e5-44cd-bcf3-d01a724ff67d
+Logical Architectural diagram: https://lucid.app/lucidchart/invitations/accept/inv_0dc02fba-730b-4516-99c1-8dfb61e272b6
+
+I did not make many changes to the conceptual diagram as I wasn't sure what other considerations to include on the diagram itself. I tried to seek help on discord, but I was having issues at the time with verifying my phone number cause it "supposedly" was associated with another account despite never opening a different account with my newer phone number... As for the logical diagram, I tried to improve upon the original model by cleaning up a lot of the lines and making it more cohesive as the original diagram got a bit messy when linking applications to services like RDS, DynamoDB and AppSync. I even included a public and private subnet cause I figured we will be isolating these two containers as best practice since we don't want any bad actors to have an easy time accessing our backend which is connected to our DBs thus allowing access to customer info. I was going to also add NACLS and SGs but I liked how cleaned it looked and I figured since it wasn't on the document outline provided by Andrew, I'd leave it out until this was mentioned. 
