@@ -26,7 +26,7 @@ It will ask you to create a tag, which you should label appropriately and click 
 So to append to what I said on the last chapter, this was another fun part for me. I had already set up my gitpod and linked it to my github along with providing it access to the template Andrew created for us which can be found on his github profile under "aws-bootcamp-cruddur-2023". There should be a big green button that says: "Use this template". Andrew has a video explaining how to appropriately set this up and can be found on his youtube channel with the title: "Creating Your Repository from the Github Template". Moving on, Once you are logged into your account, there will be a .gitpod.yml file within your directories. We are going to set up the environment using this yml file. This way, everytime we start up our gitpod environment, it will basically be scripted to set up the environment so we can always have access to AWS CLI. Andrew goes over how that yml will look like on his "Week 0 - Generate Credentials, AWS CLI, Budget and Billing Alarm via CLI" video but I am gonna post it here anyway: 
 
 ```
->tasks:
+tasks:
   - name: aws-cli 
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
@@ -36,7 +36,7 @@ So to append to what I said on the last chapter, this was another fun part for m
       unzip "awscliv2.zip"
       sudo ./aws/install
       cd $THEIA_WORKSPACE_ROOT
->vscode:
+vscode:
   extensions:
     - 42Crunch.vscode-openapi
 ```
