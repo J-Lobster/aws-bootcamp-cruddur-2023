@@ -49,7 +49,7 @@ vscode:
     - 42Crunch.vscode-openapi
 ```
 
-#### I would suggest testing this out by opening a new window to gitpod, re-entering your workspace and watch the test fly by so quickly on the terminal tab underneath that you won't know what happened (its just the yaml file doing its thing ;D). To test out if it worked, just type in "aws" on the terminal and this should appear:
+#### I would suggest testing this out by opening a new window to gitpod, re-entering your workspace and watch the test fly by so quickly on the terminal tab underneath that you won't know what happened (its just the yaml file doing its thing ;D). To test out if it worked, just type in "aws" on the terminal then hit "enter". When you do it will take you to the aws cli auto prompt. This feature will allow you to auto complete specific commands you type in. Do not enter anything and hit "enter" again. This should appear:
 
 ```
 usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
@@ -62,7 +62,7 @@ To see help text, you can run:
 aws: error: the following arguments are required: command
 ```
 
-Alright this is the very last thing we need to do and we should be all set! We will have to create environment variables in order to store our AWS credentials. This way everytime we get on gitpod and utilize the AWS CLI, it will automatically have the variables with the necessary access key and secret key to have permissions to use resources on our account. To do this we have to use a command: `gp env`. In combination with the names of the variables we will assign our credentials and regions into. This information can befound on the video but also on AWS. The commands and variables you'll enter into the terminal will look like this:
+This is the very last thing we need to do and we should be all set! We will have to create environment variables in order to store our AWS credentials. This way everytime we get on gitpod and utilize the AWS CLI, it will automatically have the variables with the necessary access key and secret key to have permissions to use resources on our account. To do this we have to use a command: `gp env`. In combination with the names of the variables we will assign our credentials and regions into. This information can befound on the video but also on AWS. The commands and variables you'll enter into the terminal will look like this:
 
 ```
 gitpod /workspace $ gp env AWS_ACCESS_KEY_ID="[Enter your access key here]
