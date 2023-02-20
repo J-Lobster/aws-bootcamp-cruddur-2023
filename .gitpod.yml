@@ -7,7 +7,6 @@ tasks:
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
       sudo ./aws/install
-      sudo pip install --upgrade pip
       cd $THEIA_WORKSPACE_ROOT
   - name: postgres
     init: |
@@ -18,3 +17,4 @@ tasks:
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
+    - cweijan.vscode-postgresql-client2
