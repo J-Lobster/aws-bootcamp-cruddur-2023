@@ -82,6 +82,6 @@ class NotificationsActivities:
 Now, that import code will work within our `app.py` file since we just finished creating the
 `notifications_activities.py` it is invoking. We can then test out this is working by launching a container and receiving a *`404`* error when attempting to connect to it. Also, make sure to `git commit` and `git push`, in order to commit and merge our code to the main branch. Up next, will set up our frontend and create a web page for our notifications service.
 
-##Setting up Cruddur Notification service - **Frontend**
+### Setting up Cruddur Notification service - **Frontend**
 
 
