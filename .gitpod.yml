@@ -11,6 +11,7 @@ tasks:
       cd /workspace/frontend-react-js
       npm install
       
+      
 
   - name: postgres
     init: |

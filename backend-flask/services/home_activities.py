@@ -1,6 +1,15 @@
 from datetime import datetime, timedelta, timezone
+from opentelemetry import trace
+
+tracer = trace.get_tracer("Home_activity")
+
 class HomeActivities:
   def run():
+    with tracer.start_as_current_span("Home_Activities"):
+      span = trace.get_current_span()
+      now = datetime.now(timezone.utc).astimezone()
+      span.set_attribute("app.now", now.isoformat())
+
     now = datetime.now(timezone.utc).astimezone()
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
@@ -41,4 +50,5 @@ class HomeActivities:
       'replies': []
     }
     ]
+    span.set_attribute("app.result_length", len(results))
     return results
