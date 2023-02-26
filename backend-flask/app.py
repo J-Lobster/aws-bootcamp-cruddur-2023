@@ -33,7 +33,6 @@ import watchtower
 import logging
 from time import strftime
 
-
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
