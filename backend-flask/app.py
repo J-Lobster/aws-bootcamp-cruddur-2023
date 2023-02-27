@@ -29,8 +29,7 @@ from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 # cloudwatch
-import watchtower
-import logging
+import watchtower, logging
 from time import strftime
 
 LOGGER = logging.getLogger(__name__)
@@ -120,7 +119,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  data = HomeActivities.run()
+  data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])
