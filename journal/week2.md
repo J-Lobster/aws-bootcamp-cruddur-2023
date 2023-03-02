@@ -5,7 +5,7 @@ In order to integrate Honeycomb into our app, we will need to take a few steps t
 
 ### App.py set up 
 ______________________
-**the First step** is to add a few dependencies into our `requirements.txt`. These dependencies are OpenTelemetry (informally called OTEL). This an observability framework – software and tools that assist in generating and capturing telemetry data from cloud-native software and is what honeycomb uses to aggregate data from your app. 
+**The First step** is to add a few dependencies into our `requirements.txt`. These dependencies are OpenTelemetry (informally called OTEL). This an observability framework. They are software and tools that assist in generating and capturing telemetry data from cloud-native software and is what honeycomb uses to aggregate data from your app. 
 ```
 opentelemetry-api 
 opentelemetry-sdk 
@@ -317,3 +317,36 @@ Now, lets `docker compose up -d`, prop up those containers and lets head back ov
 As you can see it did! You can also test this by connecting to your backends url and appending to that url : `/rollbar/test`, and the "Hello World!" message should appear on your screen. And thats it we have integrated rollbar to capture errors. However, we need to include end points for our services so this is an extra step required to fully take advantage of the service. Lets move on to the only challenge homework I was able to get to this week, creating a custom query in honeycomb. 
 
 ## Homework Challenge - Custom Queries
+This is very simple. On your Honeycomb Dashboard, you can create a new querys when tracing your application. On the Dashboard you have several options to run a custom query. You can either select 'New Query', that little blue button **OR** select 'New Query' on the left side task bar.
+
+![1](https://user-images.githubusercontent.com/114888726/222314632-e7928c6e-03e5-4cde-a47a-403b206a5f2e.png)
+
+Next will head to our gitpod workspace to bring up our application. You know the drill, its `docker compose up -d` time! Once your application is running, a window browser normally appear within your CDE So when you're there you can see if we connected which successfully we did. 
+
+![2](https://user-images.githubusercontent.com/114888726/222314718-dc69e060-e401-412a-8ad9-399fabf7c78c.png)
+**Note** The url, just remember that cause will have to go back to that address bar in a bit. Anywho..
+
+As you can see, our ports are running and everything is running as expected. However, **Note** how the locks for our ports are unlocked. If you don't, you won't be able to connect since it is not publicly running to connect too.
+
+![3](https://user-images.githubusercontent.com/114888726/222315697-50d7b90b-e129-4b91-bb2b-f307e8220e15.png)
+
+Okay, remember that url I **Noted** about? Well we're here folks. You should check your apis from your web browser. Append `/api/activities/home` onto the end of your backends url and connect to it. Once your page has that data, give the window a couple of refreshes. Just give it an 'f5' or hit the refresh button on your web browser. The data displayed to you in JSON. It is mock-data we created to host are home pages applications. Because we successfully connected, we got a 202 code. This will be important we my query is to track http codes. Another familiar one is '404'. Its when you fail to connect to the host. Anyway!
+
+
+![4](https://user-images.githubusercontent.com/114888726/222314776-a5e2c5dc-c6d2-4c60-8b28-6d33b7a239a6.png)
+
+See when we get to the page we can choose certain values to customize our queries. I wanted these spans to tell me any http code statuses im particular '404's and grouped by the duration of milliseconds (ms). Make sure you hit 'Run Query' to initiate the search.
+
+
+![5](https://user-images.githubusercontent.com/114888726/222314787-63f71c0f-2696-48d2-a2ee-776f890944da.png)
+
+Now that we've ran our query, you can see data is visulaized in as lines on this graph. Lets scroll down and check our spans. 
+
+
+![6](https://user-images.githubusercontent.com/114888726/222314793-ade45685-8fee-4dac-98de-a3a1d947c5bf.png)
+
+Each colored node is a single process when we attempted to connect to our apis. We can see the duration, the status code, as you can see some '202', but we can also see some '0's because it didn't connect to the server at all. We can see the average duration of time for each span. 
+
+![7](https://user-images.githubusercontent.com/114888726/222314798-f7b6e38f-a416-4a21-9481-557a77e79807.png)
+
+And thats it! This was really fun to learn about and write on. I am really looking forward to this weeks class. I wonder how will set up our decentralized service?
