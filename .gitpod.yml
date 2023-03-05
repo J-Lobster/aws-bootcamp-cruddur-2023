@@ -12,6 +12,10 @@ tasks:
     command: | 
       cd frontend-react-js
       npm i
+  - name: cognito
+    command: |
+      cd frontend-react-js
+      npm i aws-amplify --save
 
   - name: postgres
     init: |
@@ -28,7 +32,6 @@ vscode:
 ports:
   - name: frontend
     port: 3000
-    onOpen: open-browser
     visibility: public
   - name: backend
     port: 4567
