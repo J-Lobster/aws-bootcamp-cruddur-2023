@@ -158,7 +158,7 @@ def data_create_message():
 def data_home():
   access_token = CognitoJwtToken.extract_access_token(request.headers)
   try:
-    cognito_jwt_token.token_service.verify(access_token)
+    claims = cognito_jwt_token.token_service.verify(access_token)
     self.claims = self.token_service.claims
     g.cognito_claims = self.claims
   except TokenVerifyError as e:
