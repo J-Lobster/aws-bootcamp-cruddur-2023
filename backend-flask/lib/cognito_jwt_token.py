@@ -3,8 +3,13 @@ import requests
 from jose import jwk, jwt
 from jose.exceptions import JOSEError
 from jose.utils import base64url_decode
-from flask_awscognito.exceptions import FlaskAWSCognitoError, TokenVerifyError
 
+class FlaskAWSCognitoError(Exception):
+  pass
+
+
+class TokenVerifyError(Exception):
+  pass
 
 class CognitoJwtToken:
     def __init__(self, user_pool_id, user_pool_client_id, region, request_client=None):
