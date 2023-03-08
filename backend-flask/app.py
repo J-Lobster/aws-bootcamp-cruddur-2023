@@ -162,6 +162,7 @@ def data_home():
     # authenticated request
     app.logger.debug('authenticated')
     app.logger.debug(claims)
+    data = HomeActivities.run(logger=LOGGER)
   except TokenVerifyError as e:
    # unauthenticated request
    app.logger.debug(e)
