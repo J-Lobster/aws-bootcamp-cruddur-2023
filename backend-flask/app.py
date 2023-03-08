@@ -14,7 +14,7 @@ from services.message_groups import *
 from services.messages import *
 from services.create_message import *
 from services.show_activity import *
-from lib.cognito_jwt_token import CognitoJwtToken
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token
 
 # Honeycomb: Tracing
 from opentelemetry import trace
@@ -156,7 +156,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  access_token = CognitoJwtToken.extract_access_token(request.headers)
+  access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.token_service.verify(access_token)
     self.claims = self.token_service.claims
