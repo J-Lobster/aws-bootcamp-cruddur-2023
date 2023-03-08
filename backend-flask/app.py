@@ -32,9 +32,6 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 # cloudwatch
 import watchtower, logging
 
-# cognito
-from flask_awscognito import AWSCognitoAuthentication
-
 # Rollbar
 from time import strftime
 import os
