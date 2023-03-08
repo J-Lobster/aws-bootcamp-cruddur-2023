@@ -66,6 +66,12 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 
+cognito_jwt_token = CognitoJwtToken(
+  user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"),
+  user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID") ,
+  region=os.getenv("AWS_DEFAULT_REGION")
+)
+
 # Rollbar
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 @app.before_first_request
@@ -150,6 +156,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
+  
   data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
