@@ -71,7 +71,7 @@ app = Flask(__name__)
 
 cognito_jwt_token = CognitoJwtToken(
    user_pool_id = os.getenv("AWS_COGNITO_USER_POOL_ID"), 
-   user_pool_client_id= os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"), 
+   user_pool_client_id = os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"), 
    region = os.getenv("AWS_DEFAULT_REGION")
 )
 
@@ -161,13 +161,13 @@ def data_create_message():
 def data_home():
   access_token = CognitoJwtToken.extract_access_token(request.headers)
   try:
-    self.token_service.verify(access_token)
-    self.claims = self.token_service.claims
-    g.cognito_claims = self.claims
+    claims = cognito_jwt_token.token_service.verify(access_token)   
   except TokenVerifyError as e:
     _ = request.data
     abort(make_response(jsonify(message=str(e)), 401))
 
+  app.logger.debug('claims')
+  app.logger.debug(claims)
 
   data = HomeActivities.run(logger=LOGGER)
   return data, 200
