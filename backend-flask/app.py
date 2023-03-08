@@ -156,7 +156,16 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  
+  access_token = CognitoJwtToken.extract_access_token(request.headers)
+  try:
+    self.token_service.verify(access_token)
+    self.claims = self.token_service.claims
+    g.cognito_claims = self.claims
+  except TokenVerifyError as e:
+    _ = request.data
+    abort(make_response(jsonify(message=str(e)), 401))
+  app.logger.debug('claims')
+  app.logger.debug(claims)
   data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
