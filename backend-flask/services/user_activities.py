@@ -2,38 +2,37 @@ from datetime import datetime, timedelta, timezone
 from aws_xray_sdk.core import xray_recorder
 class UserActivities:
   def run(user_handle):
+    try:
     #AWS X-ray
-    segment = xray_recorder.begin_segment('segment_name')
-    model = {
-      'errors': None,
-      'data': None
-    }
+      segment = xray_recorder.begin_segment('user_activities')
 
-    now = datetime.now(timezone.utc).astimezone()
-    #AWS X-ray
-    dict = {
-      "now": now.isoformat()
-    }
-    subsegment = xray_recorder.begin_subsegment('mock-data')
-    subsegment.put_metadata('key', dict, 'namespace')
+      model = {
+        'errors': None,
+        'data': None
+      }
 
-    if user_handle == None or len(user_handle) < 1:
-      model['errors'] = ['blank_user_handle']
-    else:
-      now = datetime.now()
-      results = [{
-        'uuid': '248959df-3079-4947-b847-9e0892d1bab4',
-        'handle':  'Andrew Brown',
-        'message': 'Cloud is fun!',
-        'created_at': (now - timedelta(days=1)).isoformat(),
-        'expires_at': (now + timedelta(days=31)).isoformat()
-      }]
-      model['data'] = results
+      now = datetime.now(timezone.utc).astimezone()
+    
+      if user_handle == None or len(user_handle) < 1:
+        model['errors'] = ['blank_user_handle']
+      else:
+        now = datetime.now()
+        results = [{
+          'uuid': '248959df-3079-4947-b847-9e0892d1bab4',
+          'handle':  'Andrew Brown',
+          'message': 'Cloud is fun!',
+          'created_at': (now - timedelta(days=1)).isoformat(),
+          'expires_at': (now + timedelta(days=31)).isoformat()
+        }]
+        model['data'] = results
   #AWS X-ray
-    subsegment = xray_recorder.begin_subsegment('mock-data')
-    dict = {
-      "now": now.isoformat(),
-      "results-size":len(model['data'])
-    }
-    subsegment.put_metadata('key', dict, 'namespace')
+      subsegment = xray_recorder.begin_subsegment('activities_user')
+      dict = {
+        "now": now.isoformat(),
+        "results-size":len(model['data'])
+      }
+      subsegment.put_metadata('key', dict, 'namespace')
+      xray_recorder.end_subsegment()
+    finally:
+      xray_recorder.end_subsegment()
     return model
