@@ -1,0 +1,14 @@
+#! /usr/bin/bash
+
+SCHEMA_PATH="$(realpath ./backend-flask)/db/schema.sql"
+
+# $1 = $env
+if [ "$1" = "prod" ]; then
+echo "using production"
+  URL=$PROD_CONNECTION_URL
+else
+echo "using development"
+  URL=$CONNECTION_URL
+fi
+
+psql $URL cruddur < $SCHEMA_PATH
