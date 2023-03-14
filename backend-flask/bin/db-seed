@@ -1,5 +1,10 @@
 #! /usr/bin/bash
 
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="db-seed"
+printf "${CYAN}==== ${LABEL}${NO_COLOR}\n"
+
 SEED_PATH="$(realpath ./backend-flask)/db/seed.sql"
 
 # $1 = $env

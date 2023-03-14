@@ -1,5 +1,10 @@
 #! /usr/bin/bash
 
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="db-schema-load"
+printf "${CYAN}==== ${LABEL}${NO_COLOR}\n"
+
 SCHEMA_PATH="$(realpath ./backend-flask)/db/schema.sql"
 
 # $1 = $env
