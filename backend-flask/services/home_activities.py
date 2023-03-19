@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
-import logging
 from lib.db import pool
 
 tracer = trace.get_tracer("Home_activities")
@@ -21,5 +20,9 @@ class HomeActivities:
           # this will return a tuple
           # the first field being the data
           json = cur.fetchall()
+      print("==-------")
+      for record in cur:
+        print(record)
+      print("==-------")
       return json[0]
       return results
