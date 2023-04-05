@@ -12,15 +12,12 @@ tasks:
     command: |
       cd backend-flask
       pip install -r requirements.txt
-  - name: react-js
+  - name: react-js_cognito
     command: | 
       cd frontend-react-js
       rm -rf node_modules 
       npm install -g npm@8.19.3
       npm i
-  - name: cognito
-    command: |
-      cd frontend-react-js
       npm i aws-amplify --save
   - name: postgres
     init: |
